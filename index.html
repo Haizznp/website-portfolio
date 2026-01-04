@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -260,4 +261,268 @@
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="index.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyen Phuc Nguyen | Home</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <canvas id="space-canvas" class="space-canvas" aria-hidden="true"></canvas>
+  <nav class="navbar">
+    <div class="logo">NguyenPhucNguyen.</div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-page="home">Home</a></li>
+      <li><a href="about.html" data-page="about">About</a></li>
+      <li><a href="research.html" data-page="research">Research &amp; Publications</a></li>
+      <li><a href="engineering.html" data-page="engineering">Engineering &amp; Innovation</a></li>
+      <li><a href="leadership.html" data-page="leadership">Leadership &amp; Community</a></li>
+      <li><a href="honors.html" data-page="honors">Honors &amp; Metrics</a></li>
+    </ul>
+    <button id="theme-toggle">🌙</button>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Nguyễn Phúc Nguyên</h1>
+      <p>Informatics Student | Researcher | Developer</p>
+
+      <div class="stats-row">
+        <div class="stat-item" tabindex="0"
+            data-detail="RW: 760, Maths: 800&#10; Taken: Aug 2025">
+            <span class="stat-number">1560</span>
+            <span class="stat-label">SAT</span>
+        </div>
+
+        <div class="stat-item" tabindex="0"
+            data-detail="IELTS Academic:&#10;Listening: 8.5, Reading 9.0&#10;Writing 7.0, Speaking 6.5">
+            <span class="stat-number">8.0</span>
+            <span class="stat-label">IELTS</span>
+        </div>
+
+        <div class="stat-item" tabindex="0"
+            data-detail="Mathematics: 9.9, Informatics: 10.0, Physics: 9.7">
+            <span class="stat-number">9.6</span>
+            <span class="stat-label">GPA (Gr 11)</span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#hfa-feature" class="btn">Explore HFA</a>
+        <a href="research.html" class="btn">View Research</a>
+      </div>
+    </div>
+  </section>
+  <!-- Featured Project: HFA -->
+  <section id="hfa-feature" class="container">
+    <h2><span class="highlight">HFA</span> — Health for All</h2>
+    <p class="lead">
+      My proudest project: a device–app ecosystem designed to help people monitor their health proactively,
+      reduce pressure on hospitals, and improve the overall quality of healthcare services.
+    </p>
+
+    <div class="project-grid pillars">
+      <div class="card pillar">
+        <div class="pillar-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+        <h3>People actively monitor their health</h3>
+        <p>Make routine measurement and tracking simple, consistent, and accessible—at home, not only at clinics.</p>
+      </div>
+
+      <div class="card pillar">
+        <div class="pillar-icon"><i class="fa-solid fa-hospital"></i></div>
+        <h3>Reduce burden on hospitals</h3>
+        <p>Shift non-critical follow-ups to continuous monitoring and targeted alerts, so clinicians focus where it matters most.</p>
+      </div>
+
+      <div class="card pillar">
+        <div class="pillar-icon"><i class="fa-solid fa-notes-medical"></i></div>
+        <h3>Improve quality of healthcare services</h3>
+        <p>Structure data, trends, and context into a clinician-friendly workflow that supports better decisions over time.</p>
+      </div>
+    </div>
+
+    <div class="research-grid spec-grid">
+      <div class="research-card">
+        <span class="tag">Software capabilities</span>
+        <h3>From capture → structured history → reminders → collaboration</h3>
+        <ul class="spec-highlights">
+          <li><span class="keyword">User & caregiver network</span>: login, profiles, permissions, followers, follow requests.</li>
+          <li><span class="keyword">Medical data management</span>: list/detail views, graphs, CRUD, comments, diagnostic links.</li>
+          <li><span class="keyword">Diagnostics</span>: manage diagnostic entries and link them to medical data.</li>
+          <li><span class="keyword">Automation</span>: extract values from devices/prescriptions; trend analysis and alarms.</li>
+          <li><span class="keyword">Integrations</span>: HFA-careport devices (discovery/BLE data); Samsung Health linking and sync.</li>
+          <li><span class="keyword">Medication workflow</span>: prescription CRUD, reminders, push notifications, read state.</li>
+          <li><span class="keyword">Assistant</span>: chatbot via text and image with history management.</li>
+        </ul>
+
+        <details class="spec-details">
+          <summary>View full software specification (SW)</summary>
+          <div class="spec-table-wrap">
+            <table class="spec-table" aria-label="HFA Software Specification">
+              <thead>
+                <tr><th>Code</th><th>Specification</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>SW1.0</td><td>User management</td></tr>
+                <tr><td>SW1.1</td><td>Login</td></tr>
+                <tr><td>SW1.2</td><td>Init user information</td></tr>
+                <tr><td>SW1.3</td><td>Edit user information</td></tr>
+                <tr><td>SW1.4</td><td>Permission</td></tr>
+                <tr><td>SW1.5</td><td>Assign follower</td></tr>
+                <tr><td>SW1.6</td><td>Request to follow</td></tr>
+                <tr><td>SW1.7</td><td>Logout</td></tr>
+
+                <tr><td>SW2.0</td><td>Medical data management</td></tr>
+                <tr><td>SW2.1</td><td>List medical data</td></tr>
+                <tr><td>SW2.2</td><td>View detail a medical data</td></tr>
+                <tr><td>SW2.3</td><td>View medical data in a graph</td></tr>
+                <tr><td>SW2.4</td><td>Add medical data</td></tr>
+                <tr><td>SW2.5</td><td>Update medical data</td></tr>
+                <tr><td>SW2.6</td><td>Delete medical data</td></tr>
+                <tr><td>SW2.7</td><td>View comments of medical data</td></tr>
+                <tr><td>SW2.8</td><td>View diagnostic link to this medical data</td></tr>
+                <tr><td>SW2.9</td><td>Add comments</td></tr>
+                <tr><td>SW2.10</td><td>Update comments</td></tr>
+                <tr><td>SW2.11</td><td>Delete comments</td></tr>
+
+                <tr><td>SW3.0</td><td>Diagnostic management</td></tr>
+                <tr><td>SW3.1</td><td>List diagnostic</td></tr>
+                <tr><td>SW3.2</td><td>View detail a diagnostic</td></tr>
+                <tr><td>SW3.3</td><td>Add a diagnostic</td></tr>
+                <tr><td>SW3.4</td><td>Update a diagnostic</td></tr>
+                <tr><td>SW3.5</td><td>Delete a diagnostic</td></tr>
+
+                <tr><td>SW4.0</td><td>Automatically analyze & extract measurement results</td></tr>
+                <tr><td>SW4.1</td><td>Analyze/extract values of Omron HEM; autofill values to app</td></tr>
+                <tr><td>SW4.2</td><td>Analyze medical data history and create alarms</td></tr>
+                <tr><td>SW4.3</td><td>Analyze and extract values from prescriptions</td></tr>
+
+                <tr><td>SW5.0</td><td>Get data from HFA-careport devices</td></tr>
+                <tr><td>SW5.1</td><td>Discover devices</td></tr>
+                <tr><td>SW5.2</td><td>Init ID to devices</td></tr>
+                <tr><td>SW5.3</td><td>Receive data from devices</td></tr>
+                <tr><td>SW5.4</td><td>Structure and store data</td></tr>
+                <tr><td>SW5.5</td><td>Disconnect devices</td></tr>
+
+                <tr><td>SW6.0</td><td>Get data from Samsung Health Service</td></tr>
+                <tr><td>SW6.1</td><td>Link to Samsung Health app</td></tr>
+                <tr><td>SW6.2</td><td>Receive data from Samsung Health</td></tr>
+                <tr><td>SW6.3</td><td>Structure and store data</td></tr>
+                <tr><td>SW6.4</td><td>Remove link from Samsung Health</td></tr>
+
+                <tr><td>SW7.0</td><td>Prescription management</td></tr>
+                <tr><td>SW7.1</td><td>View list prescription</td></tr>
+                <tr><td>SW7.2</td><td>View detail a prescription</td></tr>
+                <tr><td>SW7.3</td><td>Add a prescription</td></tr>
+                <tr><td>SW7.4</td><td>Update a prescription</td></tr>
+                <tr><td>SW7.5</td><td>Delete a prescription</td></tr>
+
+                <tr><td>SW8.0</td><td>Reminder</td></tr>
+                <tr><td>SW8.1</td><td>View list of reminders</td></tr>
+                <tr><td>SW8.2</td><td>View detail a reminder</td></tr>
+                <tr><td>SW8.3</td><td>Add a reminder</td></tr>
+                <tr><td>SW8.4</td><td>Add a reminder from follower</td></tr>
+                <tr><td>SW8.5</td><td>Update a reminder</td></tr>
+                <tr><td>SW8.6</td><td>Delete a reminder</td></tr>
+                <tr><td>SW8.7</td><td>Send notification for reminders</td></tr>
+
+                <tr><td>SW9.0</td><td>Notification</td></tr>
+                <tr><td>SW9.1</td><td>Push a notification to the phone</td></tr>
+                <tr><td>SW9.2</td><td>Mark as read</td></tr>
+                <tr><td>SW9.3</td><td>View list notification</td></tr>
+                <tr><td>SW9.4</td><td>Set sound of notification</td></tr>
+
+                <tr><td>SW10.0</td><td>Chat bot</td></tr>
+                <tr><td>SW10.1</td><td>Chat by text</td></tr>
+                <tr><td>SW10.2</td><td>Chat by image</td></tr>
+                <tr><td>SW10.3</td><td>View history of chat</td></tr>
+                <tr><td>SW10.4</td><td>Delete history of chat</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+
+      <div class="research-card">
+        <span class="tag">Hardware modules</span>
+        <h3>Multi-sensor measurements with a patient-friendly form factor</h3>
+        <ul class="spec-highlights">
+          <li><span class="keyword">Vitals</span>: SpO2 & heart rate, body temperature, ECG.</li>
+          <li><span class="keyword">Auscultation</span>: heart and lung sounds via stethoscope module.</li>
+          <li><span class="keyword">Core system</span>: data logger, main control circuit, power supply, display and button interface.</li>
+          <li><span class="keyword">Productization</span>: enclosure/housing, dimensions and battery-life targets.</li>
+        </ul>
+
+        <details class="spec-details">
+          <summary>View full hardware specification (HW)</summary>
+          <div class="spec-table-wrap">
+            <table class="spec-table" aria-label="HFA Hardware Specification">
+              <thead>
+                <tr><th>Code</th><th>Module</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>HW01</td><td>Measure SpO2 and heart rate</td></tr>
+                <tr><td>HW02</td><td>Measure body temperature</td></tr>
+                <tr><td>HW03</td><td>Measure ECG</td></tr>
+                <tr><td>HW04</td><td>Measure heart and lung sounds</td></tr>
+                <tr><td>HW05</td><td>Data logger</td></tr>
+                <tr><td>HW06</td><td>Device display screen</td></tr>
+                <tr><td>HW07</td><td>Measurement button</td></tr>
+                <tr><td>HW08</td><td>Main control circuit</td></tr>
+                <tr><td>HW09</td><td>Power supply</td></tr>
+                <tr><td>HW10</td><td>Enclosure / housing</td></tr>
+                <tr><td>HW11</td><td>Stethoscope</td></tr>
+                <tr><td>HW12</td><td>Dimensions (mm)</td></tr>
+                <tr><td>HW13</td><td>Battery life (hour)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="hfa-gallery">
+    <div class="gallery-header">
+      <h2>HFA Project Gallery</h2>
+      <p>Scroll to explore the ecosystem</p>
+    </div>
+
+    <!-- Image wrappers - JS will restructure these into 3D scrolly effect -->
+    <div class="zoom-wrapper">
+      <div class="zoom-image">
+        <img src="resources/HFA.png" alt="HFA Device Prototype">
+        <div class="caption">The Hardware Device</div>
+      </div>
+    </div>
+
+    <div class="zoom-wrapper">
+      <div class="zoom-image">
+        <img src="resources/BsiHoangBaoTrung.png" alt="HFA App Interface">
+        <div class="caption">The Mobile Application</div>
+      </div>
+    </div>
+
+    <div class="zoom-wrapper">
+      <div class="zoom-image">
+        <img src="resources/PersonalImage.png" alt="The Team at Samsung Competition">
+        <div class="caption">National 2nd Prize Winners</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nguyen Phuc Nguyen. <a href="mailto:phucnguyen150908@gmail.com">Contact Me</a></p>
+  </footer>
+
+  <!-- Anime.js must load before index.js -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="index.js"></script>
+</body>
+>>>>>>> e6129aa (Initial commit)
 </html>
