@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyen Phuc Nguyen | Research</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+  <canvas id="space-canvas" class="space-canvas" aria-hidden="true"></canvas>
+
+  <nav class="navbar">
+    <div class="logo">NguyenPhucNguyen.</div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-page="home">Home</a></li>
+      <li><a href="about.html" data-page="about">About</a></li>
+      <li><a href="research.html" data-page="research">Research &amp; Publications</a></li>
+      <li><a href="engineering.html" data-page="engineering">Engineering &amp; Innovation</a></li>
+      <li><a href="leadership.html" data-page="leadership">Leadership &amp; Community</a></li>
+      <li><a href="honors.html" data-page="honors">Honors &amp; Metrics</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Research</h1>
+      <p class="lead">Method-driven work that connects evidence to real-world decisions.</p>
+      <div class="hero-actions">
+        <a href="#featured" class="btn">Explore Projects</a>
+        <a href="index.html" class="btn">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="featured">
+    <h2><i class="fa-solid fa-flask"></i> Featured Projects</h2>
+    <p class="section-lead">
+      Three research/publication tracks where I contribute across framing → execution → stakeholder-ready outputs.
+      Each project includes the methods I used and a proof gallery placeholder (add your images to the indicated paths).
+    </p>
+
+    <div class="research-stack">
+
+      <!-- =========================================================
+           1) SOCIAL CAPITAL + SME RESILIENCE
+      ========================================================== -->
+      <article class="research-case" id="social-capital">
+        <header class="case-head">
+          <div class="case-title">
+            <span class="tag">Working Paper</span>
+            <h3>The Impact of <span class="keyword">Social Capital</span> on SMEs’ Resilience in Vietnam</h3>
+            <div class="meta-row">
+              <span class="chip"><i class="fa-regular fa-calendar"></i> Duration: 2024–2025</span>
+              <span class="chip"><i class="fa-solid fa-user-pen"></i> Role: Co-author · Quant analysis</span>
+              <span class="chip"><i class="fa-solid fa-chart-line"></i> N=254 · SPSS 26 · AMOS 24 · SEM</span>
+            </div>
+          </div>
+
+          <div class="case-actions">
+            <a class="btn btn-sm" href="#social-capital-evidence">Evidence</a>
+            <a class="btn btn-sm" href="#" aria-disabled="true" title="Attach your PDF when ready">Manuscript (PDF)</a>
+          </div>
+        </header>
+
+        <div class="case-grid">
+          <div class="case-col">
+            <h4>What I did</h4>
+            <ul class="bullet">
+              <li>Supported research framing: decomposed social capital into <b>internal</b>, <b>external</b>, and <b>leader</b> components; aligned constructs with resilience dimensions.</li>
+              <li>Worked on survey workflow: instrument refinement, response screening, and analysis-ready dataset preparation.</li>
+              <li>Ran and documented the core quant pipeline: reliability → factor structure → measurement validation → SEM path testing.</li>
+              <li>Translated statistical outputs into practical implications for SME support ecosystems (networks, trust, institutional linkages).</li>
+            </ul>
+          </div>
+
+          <div class="case-col">
+            <h4>Methods &amp; tools</h4>
+            <div class="pill-row">
+              <span class="pill">Cronbach’s α</span>
+              <span class="pill">EFA (Varimax)</span>
+              <span class="pill">CFA</span>
+              <span class="pill">SEM</span>
+              <span class="pill">Model Fit</span>
+              <span class="pill">SPSS</span>
+              <span class="pill">AMOS</span>
+            </div>
+            <ul class="bullet">
+              <li><b>Reliability</b>: Cronbach’s alpha + item-total correlation screening.</li>
+              <li><b>EFA</b>: KMO/Bartlett checks; factor extraction + rotation for construct structure.</li>
+              <li><b>CFA</b>: convergent validity; CR/AVE checks; fit indices (χ²/df, CFI, TLI, RMSEA, SRMR).</li>
+              <li><b>SEM</b>: hypothesis tests for IS/ES/LS → Organizational Resilience paths.</li>
+            </ul>
+          </div>
+
+          <div class="case-col">
+            <h4>Skills gained</h4>
+            <ul class="bullet">
+              <li>Latent-variable thinking: construct validity, diagnostic reasoning, and model trade-offs.</li>
+              <li>Statistical communication: turning coefficients + fit indices into clear stakeholder language.</li>
+              <li>Research discipline: documentation, reproducible analysis steps, and structured academic writing.</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="case-details">
+          <summary>Key results (toggle)</summary>
+          <ul class="bullet">
+            <li>All three social capital components show positive, significant effects on SME resilience; internal social capital is strongest.</li>
+            <li>Findings emphasize trust + cohesion inside firms, plus external networks and leader linkages as resilience amplifiers.</li>
+          </ul>
+        </details>
+
+        <div class="evidence-block" id="social-capital-evidence">
+          <h4><i class="fa-regular fa-images"></i> Proof / evidence gallery</h4>
+          <div class="evidence-grid">
+            <!-- Evidence item template (keep structure; just replace src paths + captions) -->
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="resources/SEM_model.png" data-caption="SEM model output (AMOS)">
+                <img
+                  src="resources/SEM_model.png"
+                  alt="SEM model output (AMOS)"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">SEM model output (AMOS)</div>
+                    <div class="evidence-ph-path">assets/research/social-capital/sem-model.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>SEM model output (AMOS) — screenshot</figcaption>
+            </figure>
+
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="resources/Cronbach.png" data-caption="Reliability (Cronbach’s alpha) table">
+                <img
+                  src="resources/Cronbach.png"
+                  alt="Reliability (Cronbach’s alpha) table"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">Reliability table</div>
+                    <div class="evidence-ph-path">assets/research/social-capital/reliability-table.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>Cronbach’s alpha / reliability checks — screenshot</figcaption>
+            </figure>
+
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="resources/Authors_SMEs.png" data-caption="Manuscript first page / author list">
+                <img
+                  src="resources/Authors_SMEs.png"
+                  alt="Manuscript first page / author list"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">Manuscript first page</div>
+                    <div class="evidence-ph-path">assets/research/social-capital/paper-first-page.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>Manuscript page (author list / abstract) — screenshot</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           2) DIGITAL TRANSFORMATION IN EDUCATION
+      ========================================================== -->
+      <article class="research-case" id="digital-transformation">
+        <header class="case-head">
+          <div class="case-title">
+            <span class="tag">Conference Paper</span>
+            <h3><span class="keyword">Digital Transformation</span> in Education (Vietnam, Industry 4.0 Context)</h3>
+            <div class="meta-row">
+              <span class="chip"><i class="fa-regular fa-calendar"></i> Duration: 2024–2025</span>
+              <span class="chip"><i class="fa-solid fa-user-pen"></i> Role: Co-author · Policy + systems analysis</span>
+              <span class="chip"><i class="fa-solid fa-diagram-project"></i> Framework: 5 pillars + solution roadmap</span>
+            </div>
+          </div>
+
+          <div class="case-actions">
+            <a class="btn btn-sm" href="#dt-evidence">Evidence</a>
+            <a class="btn btn-sm" href="#" aria-disabled="true" title="Attach your PDF when ready">Paper (PDF)</a>
+          </div>
+        </header>
+
+        <div class="case-grid">
+          <div class="case-col">
+            <h4>What I did</h4>
+            <ul class="bullet">
+              <li>Reviewed policy direction and national programs; mapped goals into implementable school-level actions.</li>
+              <li>Structured the paper around a clear “definition → pillars → current state → gaps → solutions” flow.</li>
+              <li>Developed a solution roadmap that includes governance, infrastructure, digital content, capacity-building, and continuous evaluation.</li>
+            </ul>
+          </div>
+
+          <div class="case-col">
+            <h4>Methods &amp; tools</h4>
+            <div class="pill-row">
+              <span class="pill">Policy review</span>
+              <span class="pill">Systems thinking</span>
+              <span class="pill">Stakeholder mapping</span>
+              <span class="pill">M&amp;E framing</span>
+              <span class="pill">Digital competence</span>
+            </div>
+            <ul class="bullet">
+              <li><b>Five-pillar model</b>: infrastructure, digitized learning materials, online platforms, pedagogy innovation, digital competencies.</li>
+              <li><b>Governance + delivery</b>: strategic architecture, data systems, privacy/security, and implementation incentives.</li>
+              <li><b>Monitoring</b>: defined improvement loops and measurable criteria for progress tracking.</li>
+            </ul>
+          </div>
+
+          <div class="case-col">
+            <h4>Skills gained</h4>
+            <ul class="bullet">
+              <li>Turning policy intent into operational design: standards, indicators, rollout sequencing.</li>
+              <li>Writing for public-sector + education stakeholders (clarity, feasibility, accountability).</li>
+              <li>Balancing equity constraints (infrastructure gaps) with innovation (AI/VR/LMS ecosystems).</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="case-details">
+          <summary>Core contribution (toggle)</summary>
+          <ul class="bullet">
+            <li>Clarifies how “digitization” differs from true “digital transformation” (process + governance redesign, not just uploading content).</li>
+            <li>Proposes solution clusters: governance, inclusive infrastructure/content, teacher capacity, data-driven management, continuous evaluation.</li>
+          </ul>
+        </details>
+
+        <div class="evidence-block" id="dt-evidence">
+          <h4><i class="fa-regular fa-images"></i> Proof / evidence gallery</h4>
+          <div class="evidence-grid">
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="assets/research/digital-transformation/paper-first-page.png" data-caption="Paper first page / author list">
+                <img
+                  src="assets/research/digital-transformation/paper-first-page.png"
+                  alt="Paper first page / author list"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">Paper first page</div>
+                    <div class="evidence-ph-path">assets/research/digital-transformation/paper-first-page.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>Paper first page / author list — screenshot</figcaption>
+            </figure>
+
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="assets/research/digital-transformation/5-pillars-diagram.png" data-caption="5 pillars diagram (infrastructure → content → platforms → pedagogy → competence)">
+                <img
+                  src="assets/research/digital-transformation/5-pillars-diagram.png"
+                  alt="5 pillars diagram"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">5 pillars diagram</div>
+                    <div class="evidence-ph-path">assets/research/digital-transformation/5-pillars-diagram.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>Framework diagram (5 pillars) — screenshot</figcaption>
+            </figure>
+
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="assets/research/digital-transformation/conference-proof.png" data-caption="Conference proof (acceptance / agenda / certificate)">
+                <img
+                  src="assets/research/digital-transformation/conference-proof.png"
+                  alt="Conference proof"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">Conference proof</div>
+                    <div class="evidence-ph-path">assets/research/digital-transformation/conference-proof.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>Acceptance/certificate/agenda — screenshot</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           3) PROGRAMMING BOOK
+      ========================================================== -->
+      <article class="research-case" id="programming-book">
+        <header class="case-head">
+          <div class="case-title">
+            <span class="tag">ISBN Textbook</span>
+            <h3>Handbook of Informatics Knowledge for High School Graduation Exam — <span class="keyword">Basic Web Programming</span></h3>
+            <div class="meta-row">
+              <span class="chip"><i class="fa-regular fa-calendar"></i> Duration: Jun–Oct 2025</span>
+              <span class="chip"><i class="fa-solid fa-user-pen"></i> Role: Co-author · Editor · Team coordination</span>
+              <span class="chip"><i class="fa-solid fa-code"></i> Topics: HTML · CSS · JavaScript · Exam-style practice</span>
+            </div>
+          </div>
+
+          <div class="case-actions">
+            <a class="btn btn-sm" href="#book-evidence">Evidence</a>
+            <a class="btn btn-sm" href="#" aria-disabled="true" title="Attach your cover PDF when ready">Book (PDF)</a>
+          </div>
+        </header>
+
+        <div class="case-grid">
+          <div class="case-col">
+            <h4>What I did</h4>
+            <ul class="bullet">
+              <li>Initiated the book after informatics became a graduation exam topic; turned “no resources” into a structured preparation path.</li>
+              <li>Planned the chapter outline and quality standards; coordinated drafting and review cycles.</li>
+              <li>Co-wrote the toughest sections, then edited for clarity + exam relevance.</li>
+              <li>Introduced a collaboration rule: AI allowed only for preliminary research; drafting had to be manual to preserve accuracy and voice.</li>
+            </ul>
+          </div>
+
+          <div class="case-col">
+            <h4>Methods &amp; tools</h4>
+            <div class="pill-row">
+              <span class="pill">Curriculum design</span>
+              <span class="pill">Technical writing</span>
+              <span class="pill">Peer review</span>
+              <span class="pill">Editing</span>
+              <span class="pill">Web fundamentals</span>
+            </div>
+            <ul class="bullet">
+              <li>Progressive scaffolding: concept → worked examples → practice questions → exam-style mini tests.</li>
+              <li>Consistency rules: naming, formatting, code conventions, and “common error” callouts.</li>
+              <li>Iteration cadence: weekly review meetings + chapter-level checklists.</li>
+            </ul>
+          </div>
+
+          <div class="case-col">
+            <h4>Skills gained</h4>
+            <ul class="bullet">
+              <li>Explaining complex ideas simply (teaching through writing).</li>
+              <li>Editorial judgment: accuracy, pacing, and learner-friendly structure.</li>
+              <li>Team leadership under deadlines: standards, feedback, and accountability without breaking morale.</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="case-details">
+          <summary>Why it matters (toggle)</summary>
+          <ul class="bullet">
+            <li>Creates an accessible pathway for students who lacked prep classes or comprehensive references.</li>
+            <li>Prioritizes correctness and learnability over “flashy” content—built for exam outcomes and genuine understanding.</li>
+          </ul>
+        </details>
+
+        <div class="evidence-block" id="book-evidence">
+          <h4><i class="fa-regular fa-images"></i> Proof / evidence gallery</h4>
+          <div class="evidence-grid">
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="resources/Book_cover.jpeg" data-caption="Book cover">
+                <img
+                  src="resources/Book_cover.jpeg"
+                  alt="Book cover"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">Book cover</div>
+                    <div class="evidence-ph-path">assets/research/programming-book/cover.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>Book cover — screenshot</figcaption>
+            </figure>
+
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="resources/Back_cover.jpeg" data-caption="ISBN page / publication proof">
+                <img
+                  src="resources/Back_cover.jpeg"
+                  alt="ISBN page / publication proof"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">ISBN page</div>
+                    <div class="evidence-ph-path">assets/research/programming-book/isbn-page.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>ISBN / publication proof — screenshot</figcaption>
+            </figure>
+
+            <figure class="evidence-item">
+              <button class="evidence-btn" type="button" data-lightbox="resources/Sample_chapter_page.jpeg" data-caption="Sample chapter pages (HTML/CSS/JS)">
+                <img
+                  src="resources/Sample_chapter_page.jpeg"
+                  alt="Sample chapter pages"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.closest('figure').classList.add('img-missing')"
+                />
+                <div class="evidence-ph" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <div>
+                    <div class="evidence-ph-title">Sample pages</div>
+                    <div class="evidence-ph-path">assets/research/programming-book/sample-pages.png</div>
+                  </div>
+                </div>
+              </button>
+              <figcaption>Sample chapter pages — screenshot</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="container bg-alt" id="toolkit">
+    <h2><i class="fa-solid fa-screwdriver-wrench"></i> Cross-cutting Toolkit</h2>
+
+    <div class="project-grid">
+      <div class="card">
+        <span class="tag">Quantitative Research</span>
+        <p class="pill-row">
+          <span class="pill">EFA/CFA</span>
+          <span class="pill">SEM</span>
+          <span class="pill">Reliability</span>
+          <span class="pill">Model Diagnostics</span>
+        </p>
+        <p>Clear constructs, defensible assumptions, interpretable outputs.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">Policy + Systems Lens</span>
+        <p class="pill-row">
+          <span class="pill">Stakeholder mapping</span>
+          <span class="pill">Implementation design</span>
+          <span class="pill">M&amp;E framing</span>
+          <span class="pill">Equity constraints</span>
+        </p>
+        <p>I evaluate “what works” under real constraints: incentives, capacity, infrastructure, and maintenance.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">Teaching through Writing</span>
+        <p class="pill-row">
+          <span class="pill">Curriculum design</span>
+          <span class="pill">Technical clarity</span>
+          <span class="pill">Peer review</span>
+          <span class="pill">Quality control</span>
+        </p>
+        <p>Turning technical knowledge into learning systems that other people can actually use.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nguyen Phuc Nguyen. <a href="mailto:phucnguyen150908@gmail.com">Contact Me</a></p>
+  </footer>
+
+  <!-- Lightbox (safe: only active if evidence buttons exist) -->
+  <dialog id="lightbox" class="lightbox" aria-label="Image preview">
+    <button class="lightbox-close" type="button" aria-label="Close preview">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img id="lightbox-img" class="lightbox-img" alt="" />
+    <p id="lightbox-cap" class="lightbox-cap"></p>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

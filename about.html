@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyen Phuc Nguyen | About</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+  <canvas id="space-canvas" class="space-canvas" aria-hidden="true"></canvas>
+  <nav class="navbar">
+    <div class="logo">NguyenPhucNguyen.</div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-page="home">Home</a></li>
+      <li><a href="about.html" data-page="about">About</a></li>
+      <li><a href="research.html" data-page="research">Research &amp; Publications</a></li>
+      <li><a href="engineering.html" data-page="engineering">Engineering &amp; Innovation</a></li>
+      <li><a href="leadership.html" data-page="leadership">Leadership &amp; Community</a></li>
+      <li><a href="honors.html" data-page="honors">Honors &amp; Metrics</a></li>
+    </ul>
+    <button id="theme-toggle">🌙</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>About Me</h1>
+      <p>Builder mindset. Research discipline. Community-first execution.</p>
+
+      <div class="stats-row">
+        <div class="stat-item" tabindex="0"
+          data-detail="RW: 760, Math: 800; Taken: Aug 2025.">
+          <span class="stat-number">1560</span>
+          <span class="stat-label">SAT</span>
+        </div>
+
+        <div class="stat-item" tabindex="0"
+          data-detail="IELTS Academic: L 8.5, R 9.0, W 7.0, S 6.5">
+          <span class="stat-number">8.0</span>
+          <span class="stat-label">IELTS</span>
+        </div>
+
+        <div class="stat-item" tabindex="0"
+          data-detail="Math 9.9, Informatics 10.0, Physics 9.7 (Grade 11)">
+          <span class="stat-number">9.6</span>
+          <span class="stat-label">GPA (Gr 11)</span>
+        </div>
+      </div>
+
+      <a href="index.html#hfa-gallery" class="btn">See Featured Work</a>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2><i class="fa-solid fa-compass"></i> My Journey</h2>
+
+    <div class="project-grid">
+      <div class="card">
+        <span class="tag">Narrative</span>
+        <h3>From “cool AI” to <span class="keyword">deployable systems</span></h3>
+        <p>
+          My view of technology changed when I saw a gap between algorithms and outcomes.
+          I learned that accuracy alone does not solve real problems—data infrastructure, user adoption,
+          and delivery constraints often decide whether a solution matters.
+        </p>
+        <p>
+          Since then, I’ve focused on building systems that can ship: clear assumptions, real interfaces,
+          realistic workflows, and measurable impact.
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="tag">What I build</span>
+        <h3>Human-centered products</h3>
+        <p>
+          I enjoy projects where engineering meets operations and strategy—especially in healthcare,
+          education, and resilience.
+        </p>
+        <ul class="award-list">
+          <li>Mobile + cloud apps with practical UX (Flutter, Firebase)</li>
+          <li>AI features that serve a workflow (CV, automation, data capture)</li>
+          <li>Documentation + teaching materials that make tech accessible</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container bg-alt">
+    <h2><i class="fa-solid fa-toolbox"></i> Toolkit</h2>
+
+    <div class="project-grid">
+      <div class="card">
+        <span class="tag">Mobile & Cloud</span>
+        <p>
+          <span class="tag">Flutter/Dart</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">REST API</span>
+          <span class="tag">OAuth</span>
+          <span class="tag">BLE</span>
+        </p>
+        <p>
+          I care about reliability, privacy, and maintenance—not just demos.
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="tag">AI & Data</span>
+        <p>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">YOLOv8</span>
+          <span class="tag">Data Cleaning</span>
+          <span class="tag">Evaluation</span>
+        </p>
+        <p>
+          I prefer “small, correct, integrated” over “big, flashy, unusable.”
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="tag">Product & Leadership</span>
+        <p>
+          <span class="tag">Stakeholders</span>
+          <span class="tag">Impact Assessment</span>
+          <span class="tag">SWOT</span>
+          <span class="tag">Financial Modeling</span>
+        </p>
+        <p>
+          I aim to be a builder who understands adoption, incentives, and trade-offs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nguyen Phuc Nguyen. <a href="mailto:phucnguyen150908@gmail.com">Contact Me</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
