@@ -1374,3 +1374,812 @@ footer {
     min-height: 210px;
   }
 }
+
+.about-hero-grid{
+    display:grid;
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+    align-items:center;
+    margin-top: 18px;
+}
+@media (max-width: 900px){
+    .about-hero-grid{ grid-template-columns: 1fr; }
+}
+
+.profile-card{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(57, 255, 136, 0.25);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+.profile-photo{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    display:block;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+}
+.profile-meta{
+    margin-top: 14px;
+    line-height: 1.45;
+    opacity: 0.92;
+}
+.profile-meta strong{ font-weight: 700; }
+.profile-links{
+    margin-top: 12px;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.profile-links a{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(57, 255, 136, 0.25);
+    background: rgba(57,255,136,0.06);
+    text-decoration:none;
+}
+
+.section-block{
+    margin-top: 22px;
+}
+.section-kicker{
+    opacity: 0.8;
+    margin-top: 6px;
+    max-width: 70ch;
+}
+.story-card p{ margin-top: 10px; }
+.story-list{
+    margin-top: 12px;
+    padding-left: 18px;
+}
+.story-list li{
+    margin: 8px 0;
+}
+
+/* =========================
+   ABOUT PAGE (scoped)
+   ========================= */
+.about-page .about-hero-grid{
+  display:grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items:center;
+  margin-top: 18px;
+}
+@media (max-width: 900px){
+  .about-page .about-hero-grid{ grid-template-columns: 1fr; }
+}
+
+.about-page .profile-card{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(57, 255, 136, 0.25);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+.about-page .profile-photo{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 16px;
+  display:block;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+}
+.about-page .profile-meta{
+  margin-top: 14px;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+.about-page .profile-meta strong{ font-weight: 700; }
+
+.about-page .profile-links{
+  margin-top: 12px;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.about-page .profile-links a{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 136, 0.25);
+  background: rgba(57,255,136,0.06);
+  text-decoration:none;
+}
+
+.about-page .section-block{ margin-top: 22px; }
+.about-page .section-kicker{
+  opacity: 0.8;
+  margin-top: 6px;
+  max-width: 72ch;
+}
+
+.about-page .story-card p{ margin-top: 10px; }
+.about-page .story-list{
+  margin-top: 12px;
+  padding-left: 18px;
+}
+.about-page .story-list li{ margin: 8px 0; }
+
+.about-page .subhead{
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+.about-page .lead-strong{
+  font-size: 1.12rem;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+/* Optional spacing helpers */
+.about-page .project-grid.about-cards,
+.about-page .project-grid.spark-cards,
+.about-page .project-grid.mainstory-cards{
+  margin-top: 16px;
+}
+
+
+/* ================================
+   AURORA FLOW (Hero Background)
+   - Dramatic right-to-left aurora-like gradient
+   - Uses your existing palette (green + teal)
+================================== */
+.hero {
+    overflow: hidden;
+    isolation: isolate; /* keeps blend effects contained to hero */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* above aurora */
+}
+
+.aurora-background {
+    position: absolute;
+    inset: -25%;
+    z-index: 0;
+    pointer-events: none;
+
+    /* Stronger / more dramatic */
+    opacity: 0.58;
+    filter: blur(28px) saturate(185%) contrast(135%);
+    mix-blend-mode: screen;
+
+    /* Multi-color (within your current palette) */
+    background: linear-gradient(
+        65deg,
+        rgba(57, 255, 136, 0.10) 0%,
+        rgba(45, 212, 191, 0.34) 22%,
+        rgba(57, 255, 136, 0.52) 50%,
+        rgba(244, 244, 244, 0.14) 62%,
+        rgba(45, 212, 191, 0.30) 78%,
+        rgba(57, 255, 136, 0.12) 100%
+    );
+
+    background-size: 500% 300%;
+    animation: aurora-flow 14s ease-in-out infinite;
+}
+
+/* Right-to-left (then returns) */
+@keyframes aurora-flow {
+    0%, 100% { background-position: 100% 50%; }
+    50% { background-position: 0% 50%; }
+}
+
+/* Reduced motion: keep static */
+@media (prefers-reduced-motion: reduce) {
+    .aurora-background {
+        animation: none;
+    }
+}
+
+/* ================================
+   FULL-SCREEN HERO (AURORA ABOVE FOLD)
+================================== */
+
+.hero{
+  position: relative;        /* required for absolute aurora to anchor correctly */
+  min-height: 100vh;         /* desktop */
+  min-height: 100svh;        /* mobile: stable viewport height */
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;          /* clip aurora to hero */
+  isolation: isolate;        /* keep blend effects contained */
+  display: flex;
+  align-items: center;       /* vertically center hero content */
+}
+
+/* If your aurora uses inset:-35% for blur spill, keep it.
+   If you want it EXACTLY fill the hero bounds, force inset:0 instead. */
+.aurora-background{
+  inset: 0 !important;       /* makes aurora cover the entire hero exactly */
+}
+
+/* Make sure content stays above the aurora */
+.hero .hero-content{
+  position: relative;
+  z-index: 2;
+}
+
+/* ================================
+   AURORA: SUBTLE GREEN RIBBONS (NO COLOR WASH)
+   Paste at VERY bottom to override
+================================== */
+
+:root{
+  /* Tune these only */
+  --aurora-strength: 0.22;     /* overall visibility: 0.14–0.28 */
+  --aurora-blur: 54px;         /* softness */
+  --aurora-sat: 155%;          /* intensity without changing hue */
+}
+
+/* Override any previous layered aurora pseudo-elements */
+.aurora-background::before,
+.aurora-background::after{
+  content: none !important;
+}
+
+/* Ribbon aurora: mostly transparent + a few green curtains */
+.aurora-background{
+  inset: -20% !important;
+  opacity: var(--aurora-strength) !important;
+
+  /* Key idea: lots of transparency, only a few green streaks */
+  background:
+    /* soft glow pockets */
+    radial-gradient(ellipse at 18% 55%, rgba(57,255,136,0.40) 0%, rgba(57,255,136,0.00) 55%),
+    radial-gradient(ellipse at 72% 42%, rgba(57,255,136,0.28) 0%, rgba(57,255,136,0.00) 60%),
+
+    /* “curtain ribbons” (vertical-ish bands) */
+    linear-gradient(90deg,
+      rgba(0,0,0,0.00) 0%,
+      rgba(57,255,136,0.00) 12%,
+      rgba(57,255,136,0.32) 20%,
+      rgba(57,255,136,0.00) 28%,
+      rgba(57,255,136,0.22) 40%,
+      rgba(57,255,136,0.00) 48%,
+      rgba(57,255,136,0.30) 62%,
+      rgba(57,255,136,0.00) 70%,
+      rgba(0,0,0,0.00) 100%);
+
+  background-size: 520% 260%;
+  background-position: 120% 50%;
+
+  /* Keep it luminous but not a wash */
+  filter: blur(var(--aurora-blur)) saturate(var(--aurora-sat)) contrast(115%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+
+  /* Right -> left flow */
+  animation: aurora-rtl 14s linear infinite;
+}
+
+/* Concentrate aurora near upper/mid hero so the whole screen isn’t green */
+.aurora-background{
+  -webkit-mask-image: radial-gradient(ellipse at 50% 35%,
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.55) 45%,
+    rgba(255,255,255,0.00) 78%);
+  mask-image: radial-gradient(ellipse at 50% 35%,
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.55) 45%,
+    rgba(255,255,255,0.00) 78%);
+}
+
+@keyframes aurora-rtl{
+  0%   { background-position: 120% 50%; }
+  100% { background-position: -20% 50%; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .aurora-background{ animation: none !important; }
+}
+
+/* ================================
+   AURORA MOTION: SLOW + PING-PONG
+   (override at bottom)
+================================== */
+
+.aurora-background{
+  /* slower and back-and-forth */
+  animation: aurora-rtl-pingpong 20s ease-in-out infinite !important;
+}
+
+@keyframes aurora-rtl-pingpong{
+  0%   { background-position: 120% 50%; }  /* start from right */
+  50%  { background-position: -20% 50%; }  /* move to left */
+  100% { background-position: 120% 50%; }  /* return to right */
+}
+
+/* ================================
+   STATS: 0000 / 0.0 / 0.0 + SEQUENTIAL REVEAL
+   (append-only)
+================================== */
+
+/* Prevent jitter while numbers change */
+.stat-number{
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Keep widths stable per stat */
+.stats-row .stat-item:nth-child(1) .stat-number{ min-width: 4ch; } /* SAT: 0000 */
+.stats-row .stat-item:nth-child(2) .stat-number{ min-width: 3ch; } /* 0.0 */
+.stats-row .stat-item:nth-child(3) .stat-number{ min-width: 3ch; } /* 0.0 */
+
+/* Optional subtle emphasis while animating */
+.stat-number.is-scrambling{
+  color: var(--text-color);
+  text-shadow: 0 0 16px rgba(57,255,136,0.10);
+}
+
+.stat-number.is-locked{
+  color: var(--primary-color);
+  text-shadow: 0 0 26px rgba(57,255,136,0.28);
+}
+
+/* ================================
+   CURSOR + MAGNETIC INTERACTIONS
+   (append-only)
+================================== */
+
+/* Only enable custom cursor on devices that actually have a fine pointer (mouse/trackpad) */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor {
+    cursor: none;
+  }
+
+  body.custom-cursor a,
+  body.custom-cursor button,
+  body.custom-cursor [role="button"],
+  body.custom-cursor .btn,
+  body.custom-cursor .hover-lift,
+  body.custom-cursor summary {
+    cursor: none;
+  }
+
+  /* Keep I-beam for text inputs (optional) */
+  body.custom-cursor input,
+  body.custom-cursor textarea {
+    cursor: text;
+  }
+}
+
+/* Cursor elements */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 120ms ease, opacity 180ms ease;
+  box-shadow: 0 0 14px rgba(57, 255, 136, 0.30);
+}
+
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  border: 2px solid rgba(57, 255, 136, 0.75);
+  border-radius: 50%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 180ms ease, opacity 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  background: rgba(57, 255, 136, 0.05);
+  box-shadow: 0 0 26px rgba(57, 255, 136, 0.18);
+  backdrop-filter: blur(0.5px);
+}
+
+/* Hover: larger + "more alive" */
+.cursor-ring.hover {
+  transform: translate(-50%, -50%) scale(1.45);
+  border-color: rgba(244, 244, 244, 0.90);
+  background: rgba(57, 255, 136, 0.10);
+  box-shadow: 0 0 36px rgba(57, 255, 136, 0.28);
+}
+
+.cursor-ring.down {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.cursor-dot.down {
+  transform: translate(-50%, -50%) scale(0.75);
+}
+
+/* Hide cursor when the mouse leaves the viewport */
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0;
+}
+
+/* Reduce motion: keep everything static and lightweight */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-ring {
+    transition: none !important;
+  }
+}
+
+/* Magnetic button effect (safe even when buttons already use transform on hover):
+   We translate an injected inner wrapper instead of the button itself. */
+.magnetic .magnetic-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transition: transform 120ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magnetic .magnetic-inner {
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   ABOUT PAGE ADD-ONS (scoped)
+   - Additive only (index.css remains untouched)
+   - Designed to de-wall text via structure + rhythm
+   - Uses your existing palette + global animations
+========================================================= */
+
+.about-page .container {
+  text-align: left;
+}
+
+.about-page .about-hero-head {
+  max-width: 1100px;
+  margin: 0 auto 18px;
+}
+
+.about-page .about-tagline {
+  max-width: 58ch;
+  margin: 10px auto 0;
+  opacity: 0.88;
+}
+
+/* Quick chips */
+.about-page .about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.about-page .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(57, 255, 136, 0.08);
+  border: 1px solid rgba(57, 255, 136, 0.22);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+  backdrop-filter: blur(8px);
+}
+
+.about-page .chip i {
+  color: var(--primary-color);
+}
+
+/* Section headings (consistent rhythm) */
+.about-page .section-head {
+  max-width: 1100px;
+  margin: 0 auto 18px;
+}
+
+.about-page .spark-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 980px) {
+  .about-page .spark-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Main layout: sticky toc + content */
+.about-page .about-layout-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.about-page .about-toc {
+  position: sticky;
+  top: calc(var(--about-nav-offset, 88px) + 10px);
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+}
+
+.about-page .toc-title {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+
+.about-page .toc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 8px 0;
+  text-decoration: none;
+  color: var(--text-color);
+  background: rgba(57, 255, 136, 0.06);
+  border: 1px solid rgba(57, 255, 136, 0.16);
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.about-page .toc-chip .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(57, 255, 136, 0.22);
+  border: 1px solid rgba(57, 255, 136, 0.35);
+}
+
+.about-page .toc-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(57, 255, 136, 0.35);
+  background: rgba(57, 255, 136, 0.10);
+}
+
+.about-page .toc-chip.is-active {
+  border-color: rgba(57, 255, 136, 0.55);
+  background: rgba(57, 255, 136, 0.14);
+}
+
+.about-page .toc-chip.is-active .dot {
+  background: rgba(57, 255, 136, 0.9);
+}
+
+.about-page .toc-cta {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(57, 255, 136, 0.14);
+}
+
+/* Inline toc for mobile */
+.about-page .about-toc-inline {
+  display: none;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 8px 2px 12px;
+  margin-bottom: 10px;
+}
+
+.about-page .about-toc-inline .toc-chip {
+  width: auto;
+  white-space: nowrap;
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .about-page .about-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-page .about-toc {
+    display: none;
+  }
+  .about-page .about-toc-inline {
+    display: flex;
+  }
+}
+
+/* Timeline */
+.about-page .story-timeline {
+  position: relative;
+  padding-left: 22px;
+}
+
+.about-page .story-timeline::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 2px;
+  height: 100%;
+  background: rgba(57, 255, 136, 0.10);
+}
+
+.about-page .story-timeline::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 2px;
+  height: calc(var(--timeline-progress, 0) * 100%);
+  background: rgba(57, 255, 136, 0.65);
+  box-shadow: 0 0 20px rgba(57, 255, 136, 0.35);
+}
+
+.about-page .story-step {
+  position: relative;
+  margin: 16px 0;
+}
+
+.about-page .story-step::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 26px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid rgba(57, 255, 136, 0.55);
+  box-shadow: 0 0 16px rgba(57, 255, 136, 0.22);
+}
+
+.about-page .story-step.is-active::before {
+  background: rgba(57, 255, 136, 0.85);
+  box-shadow: 0 0 26px rgba(57, 255, 136, 0.35);
+}
+
+.about-page .step-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.about-page .step-badge {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+/* Callouts */
+.about-page .callout {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(57, 255, 136, 0.06);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+}
+
+.about-page .callout-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.about-page .qa-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.about-page .qa-list li {
+  margin: 8px 0;
+}
+
+/* What I Learned: compact grid */
+.about-page .learned-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.about-page .learned-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(57, 255, 136, 0.14);
+}
+
+.about-page .learned-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(57, 255, 136, 0.10);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  color: var(--primary-color);
+  flex: 0 0 auto;
+}
+
+.about-page .learned-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.about-page .learned-text {
+  opacity: 0.88;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .about-page .learned-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Next CTA */
+.about-page .about-next {
+  margin-top: 18px;
+}
+
+.about-page .about-next-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(57, 255, 136, 0.06);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+}
+
+.about-page .about-next-kicker {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  opacity: 0.72;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 720px) {
+  .about-page .about-next-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Minor: keep hero content readable against aurora */
+.about-page .hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(800px 420px at 50% 30%, rgba(57, 255, 136, 0.10), rgba(0, 0, 0, 0) 70%),
+    radial-gradient(900px 520px at 80% 20%, rgba(57, 255, 136, 0.06), rgba(0, 0, 0, 0) 70%);
+  opacity: 0.9;
+}

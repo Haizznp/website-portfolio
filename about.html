@@ -4,12 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nguyen Phuc Nguyen | About</title>
+
+  <!-- Global CSS used by all pages -->
   <link rel="stylesheet" href="index.css" />
+
+  <!-- About-only add-ons (does NOT modify index.css) -->
+  <link rel="stylesheet" href="about.addon.css" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 
-<body>
+<body class="about-page">
   <canvas id="space-canvas" class="space-canvas" aria-hidden="true"></canvas>
+
   <nav class="navbar">
     <div class="logo">NguyenPhucNguyen.</div>
     <ul class="nav-links">
@@ -23,111 +30,270 @@
     <button id="theme-toggle">🌙</button>
   </nav>
 
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero" id="top" data-no-reveal>
     <div class="hero-content">
-      <h1>About Me</h1>
-      <p>Builder mindset. Research discipline. Community-first execution.</p>
+      <div class="about-hero-head">
+        <h1>About</h1>
+        <p class="about-tagline">Interdisciplinary builder. Real-world constraints first. Impact over demos.</p>
 
-      <div class="stats-row">
-        <div class="stat-item" tabindex="0"
-          data-detail="RW: 760, Math: 800; Taken: Aug 2025.">
-          <span class="stat-number">1560</span>
-          <span class="stat-label">SAT</span>
-        </div>
-
-        <div class="stat-item" tabindex="0"
-          data-detail="IELTS Academic: L 8.5, R 9.0, W 7.0, S 6.5">
-          <span class="stat-number">8.0</span>
-          <span class="stat-label">IELTS</span>
-        </div>
-
-        <div class="stat-item" tabindex="0"
-          data-detail="Math 9.9, Informatics 10.0, Physics 9.7 (Grade 11)">
-          <span class="stat-number">9.6</span>
-          <span class="stat-label">GPA (Gr 11)</span>
+        <div class="about-chips" aria-label="Quick highlights">
+          <span class="chip"><i class="fa-solid fa-layer-group"></i> Systems thinking</span>
+          <span class="chip"><i class="fa-solid fa-bolt"></i> Fast prototyping</span>
+          <span class="chip"><i class="fa-solid fa-shield-halved"></i> Reliability-first</span>
+          <span class="chip"><i class="fa-solid fa-people-group"></i> Team delivery</span>
         </div>
       </div>
 
-      <a href="index.html#hfa-gallery" class="btn">See Featured Work</a>
+      <div class="about-hero-grid">
+        <!-- Profile -->
+        <div class="profile-card hover-lift" data-no-reveal>
+          <img
+            class="profile-photo"
+            src="resources/profile-picture.jpg"
+            alt="Profile photo of Nguyen Phuc Nguyen"
+            loading="lazy"
+          />
+
+          <div class="profile-meta">
+            <strong>Nguyen Phuc Nguyen</strong><br />
+            I approach problems like systems: data, people, incentives, and ensuring the output is usable.
+          </div>
+
+          <div class="profile-links">
+            <a class="magnetic" href="mailto:phucnguyen150908@gmail.com" aria-label="Email">
+              <i class="fa-solid fa-envelope"></i><span>Contact</span>
+            </a>
+            <a class="magnetic" href="engineering.html" aria-label="Engineering work">
+              <i class="fa-solid fa-screwdriver-wrench"></i><span>Engineering</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Who I am (de-walled into cards) -->
+        <div class="section-block" id="who" data-no-reveal>
+          <h2><i class="fa-solid fa-user-astronaut"></i> Who I am</h2>
+          <p class="section-kicker">
+            I am drawn to problems that look technical on the surface but fail in real life unless you connect engineering
+            with context: infrastructure, adoption, policy, and human behavior.
+          </p>
+
+          <div class="project-grid about-cards stagger">
+            <div class="card story-card hover-lift">
+              <span class="tag">Belief</span>
+              <h3>AI is not the product — it is a component</h3>
+              <p>
+                I treat models as one layer in a larger system that must be measurable, usable, and trusted.
+                If something fails, the root cause is often the surrounding workflow, not the architecture.
+              </p>
+            </div>
+
+            <div class="card story-card hover-lift">
+              <span class="tag">Method</span>
+              <h3>Engineer backward from constraints</h3>
+              <p>
+                I start with what is real: available data, user behavior, and operational edge cases.
+                Then I design the simplest system that can survive those conditions.
+              </p>
+            </div>
+
+            <div class="card story-card hover-lift">
+              <span class="tag">North star</span>
+              <h3>Trust &gt; flashiness</h3>
+              <p>
+                I care about interpretability, reliability, and what happens after the demo: maintenance, failure modes,
+                and whether the output genuinely helps someone decide.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="container">
-    <h2><i class="fa-solid fa-compass"></i> My Journey</h2>
+  <!-- THE SPARK (less text, more structure) -->
+  <section class="container" id="spark">
+    <div class="section-head">
+      <h2><i class="fa-solid fa-fire"></i> The spark</h2>
+      <p class="section-kicker">
+        A single question changed how I think about technology: if AI is advancing so fast, why do critical problems still
+        hurt people in predictable ways?
+      </p>
+    </div>
 
-    <div class="project-grid">
-      <div class="card">
-        <span class="tag">Narrative</span>
-        <h3>From “cool AI” to <span class="keyword">deployable systems</span></h3>
+    <div class="spark-grid stagger">
+      <div class="card story-card hover-lift">
+        <span class="tag">Flooding</span>
+        <h3>When a “model” isn’t the missing piece</h3>
         <p>
-          My view of technology changed when I saw a gap between algorithms and outcomes.
-          I learned that accuracy alone does not solve real problems—data infrastructure, user adoption,
-          and delivery constraints often decide whether a solution matters.
-        </p>
-        <p>
-          Since then, I’ve focused on building systems that can ship: clear assumptions, real interfaces,
-          realistic workflows, and measurable impact.
+          During severe flooding in Vietnam, I started from a naive assumption — “we just need a better predictor” — and
+          discovered the harder truth: forecasting is not only computation.
         </p>
       </div>
 
-      <div class="card">
-        <span class="tag">What I build</span>
-        <h3>Human-centered products</h3>
-        <p>
-          I enjoy projects where engineering meets operations and strategy—especially in healthcare,
-          education, and resilience.
-        </p>
-        <ul class="award-list">
-          <li>Mobile + cloud apps with practical UX (Flutter, Firebase)</li>
-          <li>AI features that serve a workflow (CV, automation, data capture)</li>
-          <li>Documentation + teaching materials that make tech accessible</li>
+      <div class="card story-card hover-lift">
+        <span class="tag">Reality</span>
+        <h3>Data and decisions come first</h3>
+        <ul class="story-list">
+          <li><strong>Data reality:</strong> advanced models mean little without reliable, real-time inputs.</li>
+          <li><strong>Decision context:</strong> warnings only help if people can trust them and respond in time.</li>
+          <li><strong>Domain complexity:</strong> terrain and drainage can dominate the outcome.</li>
         </ul>
       </div>
+
+      <div class="card story-card hover-lift">
+        <span class="tag">Direction</span>
+        <h3>Build systems, not predictions</h3>
+        <p>
+          That spark pushed me toward work where the “last mile” matters: sensing, UX, reliability, and making outputs
+          actionable for real stakeholders.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="container bg-alt">
-    <h2><i class="fa-solid fa-toolbox"></i> Toolkit</h2>
+  <!-- MAIN STORY (no wall of text; timeline + sticky toc) -->
+  <section class="container" id="story">
+    <div class="section-head">
+      <h2><i class="fa-solid fa-rocket"></i> The main story</h2>
+      <p class="section-kicker">
+        HFA – Health for All is where my mindset changed: from “optimize the model” to “stabilize the system.”
+      </p>
+    </div>
 
-    <div class="project-grid">
-      <div class="card">
-        <span class="tag">Mobile & Cloud</span>
-        <p>
-          <span class="tag">Flutter/Dart</span>
-          <span class="tag">Firebase</span>
-          <span class="tag">REST API</span>
-          <span class="tag">OAuth</span>
-          <span class="tag">BLE</span>
-        </p>
-        <p>
-          I care about reliability, privacy, and maintenance—not just demos.
-        </p>
-      </div>
+    <div class="about-layout-grid">
+      <!-- Sticky table of contents (desktop) -->
+      <aside class="about-toc" aria-label="Story sections">
+        <div class="toc-title">HFA chapters</div>
+        <a class="toc-chip magnetic" href="#hfa-beginning"><span class="dot"></span> The Beginning</a>
+        <a class="toc-chip magnetic" href="#hfa-challenge"><span class="dot"></span> The Challenge</a>
+        <a class="toc-chip magnetic" href="#hfa-shift"><span class="dot"></span> The Shift</a>
+        <a class="toc-chip magnetic" href="#hfa-learned"><span class="dot"></span> What I Learned</a>
 
-      <div class="card">
-        <span class="tag">AI & Data</span>
-        <p>
-          <span class="tag">Computer Vision</span>
-          <span class="tag">YOLOv8</span>
-          <span class="tag">Data Cleaning</span>
-          <span class="tag">Evaluation</span>
-        </p>
-        <p>
-          I prefer “small, correct, integrated” over “big, flashy, unusable.”
-        </p>
-      </div>
+        <div class="toc-cta">
+          <a class="btn magnetic" href="index.html#hfa-gallery">View HFA gallery</a>
+        </div>
+      </aside>
 
-      <div class="card">
-        <span class="tag">Product & Leadership</span>
-        <p>
-          <span class="tag">Stakeholders</span>
-          <span class="tag">Impact Assessment</span>
-          <span class="tag">SWOT</span>
-          <span class="tag">Financial Modeling</span>
-        </p>
-        <p>
-          I aim to be a builder who understands adoption, incentives, and trade-offs.
-        </p>
+      <!-- Story content -->
+      <div class="about-content">
+        <!-- Mobile chips -->
+        <nav class="about-toc-inline" aria-label="Story sections (mobile)">
+          <a class="toc-chip magnetic" href="#hfa-beginning">Beginning</a>
+          <a class="toc-chip magnetic" href="#hfa-challenge">Challenge</a>
+          <a class="toc-chip magnetic" href="#hfa-shift">Shift</a>
+          <a class="toc-chip magnetic" href="#hfa-learned">Learned</a>
+        </nav>
+
+        <div class="story-timeline" data-timeline>
+          <article id="hfa-beginning" class="story-step card hover-lift reveal" data-toc="The Beginning">
+            <div class="step-head">
+              <span class="step-badge">Chapter 01</span>
+              <h3>The Beginning</h3>
+            </div>
+            <p>
+              I joined HFA as one of three builders, initially approaching it like many technical projects: define the problem,
+              write the code, optimize the output. I took on the pieces I could execute directly—turning ideas into working
+              prototypes, testing early pipelines, and iterating fast when the system didn't behave as expected.
+            </p>
+          </article>
+
+          <article id="hfa-challenge" class="story-step card hover-lift reveal" data-toc="The Challenge">
+            <div class="step-head">
+              <span class="step-badge">Chapter 02</span>
+              <h3>The Challenge</h3>
+            </div>
+
+            <p>
+              Once we moved beyond prototypes, the work became less clean and more honest. Medical data didn't fit neat assumptions.
+              Edge cases appeared everywhere. Small errors created outsized consequences.
+            </p>
+
+            <p>
+              In our team check-ins, progress didn't always look impressive—sometimes it was hours spent tracing a single bug,
+              validating signals, or rewriting a component because it wasn't dependable enough.
+            </p>
+
+            <div class="callout">
+              <div class="callout-title"><i class="fa-solid fa-circle-question"></i> The “annoying” questions I kept asking</div>
+              <ul class="qa-list stagger">
+                <li>What happens when the device gives noisy readings?</li>
+                <li>What does the user do when the alert fires?</li>
+                <li>What information is actually useful to a doctor?</li>
+              </ul>
+            </div>
+          </article>
+
+          <article id="hfa-shift" class="story-step card hover-lift reveal" data-toc="The Shift">
+            <div class="step-head">
+              <span class="step-badge">Chapter 03</span>
+              <h3>The Shift</h3>
+            </div>
+            <p>
+              Our turning point came when we spoke with a doctor at the National Hospital of Endocrinology and learned about a
+              patient in Thai Nguyen who couldn't travel regularly for monitoring. The doctor's message was direct: in healthcare,
+              it's safer to consult experts than to rely entirely on AI.
+            </p>
+            <p>
+              As a three-person team, we made a hard decision: pivot from “AI diagnosis” as the headline to real-time alerts that help
+              connect patients and doctors. That choice forced us to prioritize responsibility over flashiness—and to build for trust,
+              not just performance.
+            </p>
+          </article>
+
+          <article id="hfa-learned" class="story-step card hover-lift reveal" data-toc="What I Learned">
+            <div class="step-head">
+              <span class="step-badge">Chapter 04</span>
+              <h3>What I Learned</h3>
+            </div>
+
+            <p>
+              After the pivot, I stopped thinking of AI as the product and started thinking of it as one component in a larger system:
+              user behavior, device reliability, clinical workflow, and communication under pressure.
+            </p>
+            <p>
+              My work became less about chasing perfect metrics and more about making the system stable, interpretable, and usable in
+              real life—because a health tool that isn't dependable is worse than no tool at all.
+            </p>
+
+            <div class="learned-grid stagger">
+              <div class="learned-item">
+                <div class="learned-icon"><i class="fa-solid fa-user-check"></i></div>
+                <div>
+                  <div class="learned-title">Usability</div>
+                  <div class="learned-text">Design for what users do under stress, not what they do in a demo.</div>
+                </div>
+              </div>
+              <div class="learned-item">
+                <div class="learned-icon"><i class="fa-solid fa-signal"></i></div>
+                <div>
+                  <div class="learned-title">Reliability</div>
+                  <div class="learned-text">Handle noise, edge cases, and failures as first-class requirements.</div>
+                </div>
+              </div>
+              <div class="learned-item">
+                <div class="learned-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                <div>
+                  <div class="learned-title">Clinical workflow</div>
+                  <div class="learned-text">Support experts instead of replacing them; integrate with real decision paths.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="about-next reveal">
+          <div class="about-next-card">
+            <div>
+              <div class="about-next-kicker">Next</div>
+              <h3>See how I build</h3>
+              <p>
+                If you want the technical side — prototyping, engineering, and system design — the Engineering page shows the work.
+              </p>
+            </div>
+            <a class="btn magnetic" href="engineering.html">Go to Engineering</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -138,5 +304,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="index.js"></script>
+  <script src="about.addon.js"></script>
 </body>
 </html>

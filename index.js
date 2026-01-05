@@ -1175,3 +1175,517 @@ function setupZoomScroll() {
         requestUpdate();
     }, { once: true });
 })();
+
+
+// ===============================
+// Aurora Flow Background (Hero)
+// ===============================
+(function setupAuroraFlowBackground() {
+    const prefersReduced = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) return;
+
+    const heroes = document.querySelectorAll('.hero');
+    if (!heroes.length) return;
+
+    heroes.forEach(hero => {
+        // Prevent duplicates (multi-page safe)
+        if (hero.querySelector('.aurora-background')) return;
+
+        const aurora = document.createElement('div');
+        aurora.className = 'aurora-background';
+
+        // Keep it behind hero content but above the star canvas
+        hero.appendChild(aurora);
+    });
+})();
+
+// ===============================
+// Stats: "0000 0.0 0.0" -> per-digit scramble (2s each, left->right) -> lock final
+// ===============================
+(function statsSequentialReveal_digits() {
+  if (window.__STATS_SEQ_REVEAL_DIGITS__) return;
+  window.__STATS_SEQ_REVEAL_DIGITS__ = true;
+
+  const items = Array.from(document.querySelectorAll('.stats-row .stat-item'));
+  if (!items.length) return;
+
+  const reduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduced) return; // keep static for reduced motion users
+
+  // ---- Controls you’ll actually tweak ----
+  const randomDuration = 2000; // 2s scramble per stat
+  const digitDelay = 67;      // ms between digits starting (left->right cascade)
+  const flickerMs = 6.7;        // how often digits change during scramble
+  // ---------------------------------------
+
+  const stats = items.map((item) => {
+    const el = item.querySelector('.stat-number');
+    const label = (item.querySelector('.stat-label')?.textContent || '').toUpperCase();
+    if (!el) return null;
+
+    const finalText = (el.textContent || '').trim();
+    const decimals = finalText.includes('.') ? finalText.split('.')[1].length : 0;
+
+    // Placeholder matches the shape of the final number (SAT => 0000, IELTS => 0.0, etc.)
+    let placeholder = '';
+    if (decimals > 0) {
+      const intPart = finalText.split('.')[0].replace(/\D/g, '');
+      const intDigits = Math.max(intPart.length, 1);
+      placeholder = '0'.repeat(intDigits) + '.' + '0'.repeat(decimals);
+    } else {
+      const digits = Math.max(finalText.replace(/\D/g, '').length, 4);
+      placeholder = '0'.repeat(digits);
+    }
+
+    el.dataset.final = finalText;
+    el.dataset.placeholder = placeholder;
+    el.textContent = placeholder;
+
+    return { item, el, label, finalText, placeholder };
+  }).filter(Boolean);
+
+  let skipAll = false;
+  const lockAll = () => {
+    skipAll = true;
+    stats.forEach(s => {
+      s.el.textContent = s.finalText;
+      s.el.classList.remove('is-scrambling');
+      s.el.classList.add('is-locked');
+    });
+  };
+  items.forEach(it => it.addEventListener('pointerdown', lockAll, { once: true }));
+
+  function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // Per-digit random, but still “plausible-looking” for each stat
+  function randomDigitFor(label, digitIndex, charIndex, fullText) {
+    // SAT looks best if it stays in a realistic range (mostly 1xxx / up to 1600)
+    if (label.includes('SAT')) {
+      if (digitIndex === 0) return '1';
+      if (digitIndex === 1) return String(randInt(0, 6));
+      return String(randInt(0, 9));
+    }
+
+    // IELTS / GPA: keep it impressive by biasing the leading digit upward
+    // (only affects the first integer digit in the string)
+    const isLeadingDigit = (charIndex === 0 || (charIndex === 1 && fullText[0] === '0'));
+    if (isLeadingDigit) return String(randInt(6, 9));
+
+    return String(randInt(0, 9));
+  }
+
+  function buildScrambleString({ label, placeholder }, elapsed) {
+    let out = '';
+    let digitOrdinal = 0;
+
+    for (let i = 0; i < placeholder.length; i++) {
+      const ch = placeholder[i];
+
+      if (ch < '0' || ch > '9') {
+        // keep '.' or other non-digits fixed
+        out += ch;
+        continue;
+      }
+
+      const startAt = digitOrdinal * digitDelay;
+
+      if (elapsed < startAt) {
+        // not started yet: keep the initial zero for a left->right cascade effect
+        out += '0';
+      } else {
+        // active: randomize this digit
+        out += randomDigitFor(label, digitOrdinal, i, placeholder);
+      }
+
+      digitOrdinal++;
+    }
+
+    return out;
+  }
+
+  function animateOne(s) {
+    return new Promise((resolve) => {
+      const { el, item, label, finalText, placeholder } = s;
+
+      let startTime = null;
+      let lastFlicker = 0;
+      let raf = null;
+
+      el.classList.remove('is-locked');
+      el.classList.add('is-scrambling');
+
+      const tick = (ts) => {
+        if (skipAll) { resolve(); return; }
+        if (!startTime) startTime = ts;
+        const elapsed = ts - startTime;
+
+        if (elapsed < randomDuration) {
+          if (ts - lastFlicker > flickerMs) {
+            lastFlicker = ts;
+            el.textContent = buildScrambleString({ label, placeholder }, elapsed);
+          }
+          raf = requestAnimationFrame(tick);
+          return;
+        }
+
+        // Lock final
+        el.textContent = finalText;
+        el.classList.remove('is-scrambling');
+        el.classList.add('is-locked');
+
+        if (raf) cancelAnimationFrame(raf);
+        resolve();
+      };
+
+      raf = requestAnimationFrame(tick);
+    });
+  }
+
+  async function runSequence() {
+    for (const s of stats) {
+      if (skipAll) break;
+      await animateOne(s);
+    }
+  }
+
+  const row = document.querySelector('.stats-row');
+  if (!row) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        obs.disconnect();
+        runSequence();
+        break;
+      }
+    }
+  }, { threshold: 0.55 });
+
+  obs.observe(row);
+})();
+
+// ===============================
+// Cursor interactions: Custom cursor + magnetic buttons
+// (append-only)
+// ===============================
+(function () {
+  function supportsFinePointer() {
+    return window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function setupCustomCursor() {
+    if (prefersReducedMotion() || !supportsFinePointer()) return;
+
+    // Prevent duplicates across multi-page navigations / hot reloads
+    if (document.querySelector('.cursor-dot') || document.querySelector('.cursor-ring')) return;
+
+    const cursorDot = document.createElement('div');
+    const cursorRing = document.createElement('div');
+
+    cursorDot.className = 'cursor-dot is-hidden';
+    cursorRing.className = 'cursor-ring is-hidden';
+
+    document.body.appendChild(cursorDot);
+    document.body.appendChild(cursorRing);
+
+    document.body.classList.add('custom-cursor');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    function update() {
+      // Dot follows instantly
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top = mouseY + 'px';
+
+      // Ring eases behind
+        const dx = mouseX - ringX;
+        const dy = mouseY - ringY;
+        const dist = Math.hypot(dx, dy);
+
+        // Faster catch-up when you move quickly, smoother when you move slowly
+        const t = Math.min(0.35, Math.max(0.14, dist / 300));
+
+        ringX += dx * t;
+        ringY += dy * t;
+
+
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+
+      requestAnimationFrame(update);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      cursorDot.classList.remove('is-hidden');
+      cursorRing.classList.remove('is-hidden');
+    }, { passive: true });
+
+    // Hide on leave (prevents cursor freezing mid-screen)
+    document.addEventListener('mouseleave', () => {
+      cursorDot.classList.add('is-hidden');
+      cursorRing.classList.add('is-hidden');
+    });
+
+    // Hover effects via event delegation (covers elements added later)
+    const interactiveSelector = 'a, button, .btn, .hover-lift, summary, [role="button"]';
+
+    document.addEventListener('mouseover', (e) => {
+      const hit = e.target && e.target.closest ? e.target.closest(interactiveSelector) : null;
+      if (hit) cursorRing.classList.add('hover');
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const hit = e.target && e.target.closest ? e.target.closest(interactiveSelector) : null;
+      if (!hit) return;
+
+      const to = e.relatedTarget;
+      if (to && hit.contains(to)) return; // still inside same element
+      cursorRing.classList.remove('hover');
+    });
+
+    // Click feedback
+    document.addEventListener('mousedown', () => {
+      cursorRing.classList.add('down');
+      cursorDot.classList.add('down');
+    });
+
+    document.addEventListener('mouseup', () => {
+      cursorRing.classList.remove('down');
+      cursorDot.classList.remove('down');
+    });
+
+    update();
+  }
+
+  function wrapMagneticInner(el) {
+    // If already wrapped, return the existing wrapper
+    const existing = el.querySelector(':scope > .magnetic-inner');
+    if (existing) return existing;
+
+    const inner = document.createElement('span');
+    inner.className = 'magnetic-inner';
+
+    // Move all existing children into inner wrapper
+    while (el.firstChild) inner.appendChild(el.firstChild);
+    el.appendChild(inner);
+
+    return inner;
+  }
+
+  function setupMagneticButtons() {
+    if (prefersReducedMotion() || !supportsFinePointer()) return;
+
+    // Auto-tag common "button-like" items as magnetic (safe defaults)
+    const autoMagneticSelector = [
+      '.btn',
+      '.nav-links a',
+      '#theme-toggle',
+      '.profile-links a'
+    ].join(',');
+
+    document.querySelectorAll(autoMagneticSelector).forEach((el) => {
+      el.classList.add('magnetic');
+    });
+
+    const magneticElements = Array.from(document.querySelectorAll('.magnetic'));
+    if (!magneticElements.length) return;
+
+    const maxDistance = 65;      // activation radius (px)
+    const strengthScale = 0.35;  // how far inner content moves
+
+    // Cache per-element geometry for performance
+    const state = new Map();
+
+    function measure(el) {
+      const rect = el.getBoundingClientRect();
+      state.set(el, {
+        rect,
+        cx: rect.left + rect.width / 2,
+        cy: rect.top + rect.height / 2,
+        tx: 0,
+        ty: 0,
+        raf: null
+      });
+    }
+
+    magneticElements.forEach((el) => {
+      const inner = wrapMagneticInner(el);
+      measure(el);
+
+      const onMove = (e) => {
+        const s = state.get(el);
+        if (!s) return;
+
+        const x = e.clientX - s.cx;
+        const y = e.clientY - s.cy;
+        const dist = Math.hypot(x, y);
+
+        if (dist < maxDistance) {
+          const t = (maxDistance - dist) / maxDistance;
+          s.tx = x * t * strengthScale;
+          s.ty = y * t * strengthScale;
+
+          if (!s.raf) {
+            s.raf = requestAnimationFrame(() => {
+              inner.style.transform = `translate(${s.tx.toFixed(2)}px, ${s.ty.toFixed(2)}px)`;
+              s.raf = null;
+            });
+          }
+        }
+      };
+
+      const onEnter = () => measure(el);
+
+      const onLeave = () => {
+        const s = state.get(el);
+        if (!s) return;
+        s.tx = 0;
+        s.ty = 0;
+        inner.style.transform = 'translate(0px, 0px)';
+      };
+
+      el.addEventListener('mousemove', onMove);
+      el.addEventListener('mouseenter', onEnter);
+      el.addEventListener('mouseleave', onLeave);
+    });
+
+    // Re-measure on layout changes
+    const remeasureAll = () => magneticElements.forEach(measure);
+    window.addEventListener('resize', remeasureAll, { passive: true });
+    window.addEventListener('scroll', remeasureAll, { passive: true });
+  }
+
+  function init() {
+    if (!document.body) return;
+    setupCustomCursor();
+    setupMagneticButtons();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+// =========================================================
+// ABOUT PAGE ADD-ONS (scoped)
+// - Smooth scroll + active toc
+// - Timeline progress fill
+// - No changes to index.js; safe on other pages
+// =========================================================
+
+(function setupAboutPageAddons() {
+  if (!document.body || !document.body.classList.contains('about-page')) return;
+
+  const nav = document.querySelector('.navbar');
+  const navOffset = (nav ? nav.offsetHeight : 76) + 14;
+  document.documentElement.style.setProperty('--about-nav-offset', navOffset + 'px');
+
+  const clamp01 = (v) => Math.max(0, Math.min(1, v));
+
+  // ---------- Smooth scroll for TOC chips ----------
+  const tocLinks = Array.from(document.querySelectorAll('.about-toc a[href^="#"], .about-toc-inline a[href^="#"]'));
+  const targets = tocLinks
+    .map(a => {
+      const id = (a.getAttribute('href') || '').slice(1);
+      const el = id ? document.getElementById(id) : null;
+      return el ? { a, id, el } : null;
+    })
+    .filter(Boolean);
+
+  function setActive(id) {
+    tocLinks.forEach(a => a.classList.toggle('is-active', (a.getAttribute('href') || '') === `#${id}`));
+  }
+
+  function scrollToTarget(el) {
+    const y = window.scrollY + el.getBoundingClientRect().top - navOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+
+  tocLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href') || '';
+      if (!href.startsWith('#')) return;
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      e.preventDefault();
+      setActive(id);
+      scrollToTarget(el);
+    });
+  });
+
+  // ---------- Active step highlighting ----------
+  const steps = Array.from(document.querySelectorAll('.story-step'));
+  if (steps.length) {
+    const io = new IntersectionObserver((entries) => {
+      // Pick the most visible step as active
+      const visible = entries
+        .filter(en => en.isIntersecting)
+        .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0));
+
+      if (!visible.length) return;
+
+      const active = visible[0].target;
+      const id = active.id;
+
+      steps.forEach(s => s.classList.toggle('is-active', s === active));
+      if (id) setActive(id);
+    }, {
+      root: null,
+      threshold: [0.15, 0.3, 0.45, 0.6],
+      rootMargin: `-${navOffset}px 0px -55% 0px`
+    });
+
+    steps.forEach(s => io.observe(s));
+  }
+
+  // ---------- Timeline progress fill ----------
+  const timeline = document.querySelector('[data-timeline]');
+  if (!timeline) return;
+
+  let raf = null;
+  function updateTimelineProgress() {
+    raf = null;
+
+    const rect = timeline.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight || 1;
+
+    // Progress from when the timeline top reaches mid-viewport to when it leaves
+    const start = vh * 0.30;
+    const end = vh * 0.75;
+
+    const t = (start - rect.top) / (rect.height - (end - start));
+    const p = clamp01(t);
+    timeline.style.setProperty('--timeline-progress', String(p));
+  }
+
+  function requestUpdate() {
+    if (raf) return;
+    raf = requestAnimationFrame(updateTimelineProgress);
+  }
+
+  updateTimelineProgress();
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate, { passive: true });
+})();
