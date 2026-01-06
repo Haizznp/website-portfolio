@@ -6,6 +6,8 @@
     --card-bg: #0b0b0b;        /* near-black cards */
     --border-color: rgba(57, 255, 136, 0.35);
     --muted-green: rgba(57, 255, 136, 0.10);
+    --nav-h: 72px;            /* change once, affects everything */
+    --nav-pad-y: 14px;        /* vertical padding inside navbar */
 }
 
 /* Dark mode can stay identical (black + white + green accents) */
@@ -39,16 +41,17 @@ html {
 
 /* 2. Navigation */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background-color: var(--card-bg);
-    box-shadow: 0 2px 16px rgba(57, 255, 136, 0.10);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  height: var(--nav-h);
+  padding: 1rem 5%;              /* no vertical padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;       /* important */
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 16px rgba(57, 255, 136, 0.10);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 /* --- Sliding underline indicator --- */
@@ -2074,4 +2077,19 @@ footer {
 
 @media (prefers-reduced-motion: reduce){
   .stat-number.pop-once{ animation: none !important; }
+}
+
+/* Keep the same .logo class so your header/nav alignment doesn't break */
+.logo{
+  display: flex;
+  /* align-items: center; */
+  height: 100%;
+  align-items: stretch;
+  text-decoration: none;
+}
+
+.logo-mark{
+  height: 100%;
+  width: auto;
+  display: block;
 }
