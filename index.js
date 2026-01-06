@@ -1177,29 +1177,29 @@ function setupZoomScroll() {
 })();
 
 
-// ===============================
-// Aurora Flow Background (Hero)
-// ===============================
-(function setupAuroraFlowBackground() {
-    const prefersReduced = window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// // ===============================
+// // Aurora Flow Background (Hero)
+// // ===============================
+// (function setupAuroraFlowBackground() {
+//     const prefersReduced = window.matchMedia &&
+//         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (prefersReduced) return;
+//     if (prefersReduced) return;
 
-    const heroes = document.querySelectorAll('.hero');
-    if (!heroes.length) return;
+//     const heroes = document.querySelectorAll('.hero');
+//     if (!heroes.length) return;
 
-    heroes.forEach(hero => {
-        // Prevent duplicates (multi-page safe)
-        if (hero.querySelector('.aurora-background')) return;
+//     heroes.forEach(hero => {
+//         // Prevent duplicates (multi-page safe)
+//         if (hero.querySelector('.aurora-background')) return;
 
-        const aurora = document.createElement('div');
-        aurora.className = 'aurora-background';
+//         const aurora = document.createElement('div');
+//         aurora.className = 'aurora-background';
 
-        // Keep it behind hero content but above the star canvas
-        hero.appendChild(aurora);
-    });
-})();
+//         // Keep it behind hero content but above the star canvas
+//         hero.appendChild(aurora);
+//     });
+// })();
 
 // ===============================
 // Stats: "0000 0.0 0.0" -> per-digit scramble (2s each, left->right) -> lock final
@@ -1338,6 +1338,10 @@ function setupZoomScroll() {
         el.textContent = finalText;
         el.classList.remove('is-scrambling');
         el.classList.add('is-locked');
+
+        el.classList.remove('pop-once');
+        void el.offsetWidth;
+        el.classList.add('pop-once');
 
         if (raf) cancelAnimationFrame(raf);
         resolve();
@@ -1689,3 +1693,4 @@ function setupZoomScroll() {
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate, { passive: true });
 })();
+

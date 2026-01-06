@@ -1432,6 +1432,9 @@ footer {
     opacity: 0.8;
     margin-top: 6px;
     max-width: 70ch;
+  text-align: right;
+  /* margin-left: 0; */
+  /* margin-right: auto; */
 }
 .story-card p{ margin-top: 10px; }
 .story-list{
@@ -1527,180 +1530,6 @@ footer {
 .about-page .project-grid.spark-cards,
 .about-page .project-grid.mainstory-cards{
   margin-top: 16px;
-}
-
-
-/* ================================
-   AURORA FLOW (Hero Background)
-   - Dramatic right-to-left aurora-like gradient
-   - Uses your existing palette (green + teal)
-================================== */
-.hero {
-    overflow: hidden;
-    isolation: isolate; /* keeps blend effects contained to hero */
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2; /* above aurora */
-}
-
-.aurora-background {
-    position: absolute;
-    inset: -25%;
-    z-index: 0;
-    pointer-events: none;
-
-    /* Stronger / more dramatic */
-    opacity: 0.58;
-    filter: blur(28px) saturate(185%) contrast(135%);
-    mix-blend-mode: screen;
-
-    /* Multi-color (within your current palette) */
-    background: linear-gradient(
-        65deg,
-        rgba(57, 255, 136, 0.10) 0%,
-        rgba(45, 212, 191, 0.34) 22%,
-        rgba(57, 255, 136, 0.52) 50%,
-        rgba(244, 244, 244, 0.14) 62%,
-        rgba(45, 212, 191, 0.30) 78%,
-        rgba(57, 255, 136, 0.12) 100%
-    );
-
-    background-size: 500% 300%;
-    animation: aurora-flow 14s ease-in-out infinite;
-}
-
-/* Right-to-left (then returns) */
-@keyframes aurora-flow {
-    0%, 100% { background-position: 100% 50%; }
-    50% { background-position: 0% 50%; }
-}
-
-/* Reduced motion: keep static */
-@media (prefers-reduced-motion: reduce) {
-    .aurora-background {
-        animation: none;
-    }
-}
-
-/* ================================
-   FULL-SCREEN HERO (AURORA ABOVE FOLD)
-================================== */
-
-.hero{
-  position: relative;        /* required for absolute aurora to anchor correctly */
-  min-height: 100vh;         /* desktop */
-  min-height: 100svh;        /* mobile: stable viewport height */
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;          /* clip aurora to hero */
-  isolation: isolate;        /* keep blend effects contained */
-  display: flex;
-  align-items: center;       /* vertically center hero content */
-}
-
-/* If your aurora uses inset:-35% for blur spill, keep it.
-   If you want it EXACTLY fill the hero bounds, force inset:0 instead. */
-.aurora-background{
-  inset: 0 !important;       /* makes aurora cover the entire hero exactly */
-}
-
-/* Make sure content stays above the aurora */
-.hero .hero-content{
-  position: relative;
-  z-index: 2;
-}
-
-/* ================================
-   AURORA: SUBTLE GREEN RIBBONS (NO COLOR WASH)
-   Paste at VERY bottom to override
-================================== */
-
-:root{
-  /* Tune these only */
-  --aurora-strength: 0.22;     /* overall visibility: 0.14–0.28 */
-  --aurora-blur: 54px;         /* softness */
-  --aurora-sat: 155%;          /* intensity without changing hue */
-}
-
-/* Override any previous layered aurora pseudo-elements */
-.aurora-background::before,
-.aurora-background::after{
-  content: none !important;
-}
-
-/* Ribbon aurora: mostly transparent + a few green curtains */
-.aurora-background{
-  inset: -20% !important;
-  opacity: var(--aurora-strength) !important;
-
-  /* Key idea: lots of transparency, only a few green streaks */
-  background:
-    /* soft glow pockets */
-    radial-gradient(ellipse at 18% 55%, rgba(57,255,136,0.40) 0%, rgba(57,255,136,0.00) 55%),
-    radial-gradient(ellipse at 72% 42%, rgba(57,255,136,0.28) 0%, rgba(57,255,136,0.00) 60%),
-
-    /* “curtain ribbons” (vertical-ish bands) */
-    linear-gradient(90deg,
-      rgba(0,0,0,0.00) 0%,
-      rgba(57,255,136,0.00) 12%,
-      rgba(57,255,136,0.32) 20%,
-      rgba(57,255,136,0.00) 28%,
-      rgba(57,255,136,0.22) 40%,
-      rgba(57,255,136,0.00) 48%,
-      rgba(57,255,136,0.30) 62%,
-      rgba(57,255,136,0.00) 70%,
-      rgba(0,0,0,0.00) 100%);
-
-  background-size: 520% 260%;
-  background-position: 120% 50%;
-
-  /* Keep it luminous but not a wash */
-  filter: blur(var(--aurora-blur)) saturate(var(--aurora-sat)) contrast(115%);
-  mix-blend-mode: screen;
-  pointer-events: none;
-
-  /* Right -> left flow */
-  animation: aurora-rtl 14s linear infinite;
-}
-
-/* Concentrate aurora near upper/mid hero so the whole screen isn’t green */
-.aurora-background{
-  -webkit-mask-image: radial-gradient(ellipse at 50% 35%,
-    rgba(255,255,255,0.95) 0%,
-    rgba(255,255,255,0.55) 45%,
-    rgba(255,255,255,0.00) 78%);
-  mask-image: radial-gradient(ellipse at 50% 35%,
-    rgba(255,255,255,0.95) 0%,
-    rgba(255,255,255,0.55) 45%,
-    rgba(255,255,255,0.00) 78%);
-}
-
-@keyframes aurora-rtl{
-  0%   { background-position: 120% 50%; }
-  100% { background-position: -20% 50%; }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .aurora-background{ animation: none !important; }
-}
-
-/* ================================
-   AURORA MOTION: SLOW + PING-PONG
-   (override at bottom)
-================================== */
-
-.aurora-background{
-  /* slower and back-and-forth */
-  animation: aurora-rtl-pingpong 20s ease-in-out infinite !important;
-}
-
-@keyframes aurora-rtl-pingpong{
-  0%   { background-position: 120% 50%; }  /* start from right */
-  50%  { background-position: -20% 50%; }  /* move to left */
-  100% { background-position: 120% 50%; }  /* return to right */
 }
 
 /* ================================
@@ -2008,7 +1837,7 @@ footer {
 /* Timeline */
 .about-page .story-timeline {
   position: relative;
-  padding-left: 22px;
+  padding-left: 20px;
 }
 
 .about-page .story-timeline::before {
@@ -2182,4 +2011,67 @@ footer {
     radial-gradient(800px 420px at 50% 30%, rgba(57, 255, 136, 0.10), rgba(0, 0, 0, 0) 70%),
     radial-gradient(900px 520px at 80% 20%, rgba(57, 255, 136, 0.06), rgba(0, 0, 0, 0) 70%);
   opacity: 0.9;
+}
+
+/* Center the “I am drawn …” kicker inside Who I am */
+.about-page #who .section-kicker{
+  margin-left: auto;
+  margin-right: auto;   /* centers the block when max-width is set */
+  text-align: center;   /* centers the text */
+}
+
+/* Green outline box around the entire "Who I am" block (title + kicker + 3 cards) */
+.about-page #who{
+  position: relative;
+  padding: 26px 24px 24px;
+  border-radius: 22px;
+
+  border: 1.5px solid rgba(57, 255, 136, 0.60); /* stronger than --border-color */
+  background: rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(57, 255, 136, 0.12),
+    0 18px 55px rgba(57, 255, 136, 0.10);
+}
+
+/* Optional: subtle inner glow (keeps your “green aura” vibe) */
+.about-page #who::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 0%,
+    rgba(57, 255, 136, 0.16),
+    rgba(0, 0, 0, 0) 55%);
+  opacity: 0.9;
+}
+
+/* Make sure content stays above the glow layer */
+.about-page #who > *{ position: relative; z-index: 1; }
+
+/* Mobile: slightly tighter padding */
+@media (max-width: 900px){
+  .about-page #who{ padding: 18px 16px; border-radius: 18px; }
+}
+
+/* Left-align only the specific kicker you tagged */
+.about-page .kicker-right{
+  text-align: right;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* One-time pop when stats finish */
+.stat-number.pop-once{
+  animation: stat-pop-once 520ms cubic-bezier(0.2, 0.9, 0.2, 1) 1;
+}
+
+@keyframes stat-pop-once{
+  0%   { transform: scale(1);   filter: brightness(1); }
+  45%  { transform: scale(1.16); filter: brightness(1.25); }
+  100% { transform: scale(1);   filter: brightness(1); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .stat-number.pop-once{ animation: none !important; }
 }
