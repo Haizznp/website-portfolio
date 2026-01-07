@@ -1861,3 +1861,66 @@ function setupZoomScroll() {
     });
   });
 })();
+
+(function keepMagneticCursorAboveLightbox(){
+  const dlg = document.getElementById('lightbox');
+  if (!dlg) return;
+
+  // Remember original position so we can restore it
+  let homeParent = null;
+  const homeMarker = document.createComment('cursor-home-marker');
+
+  function getCursor() {
+    return {
+      dot: document.querySelector('.cursor-dot'),
+      ring: document.querySelector('.cursor-ring'),
+    };
+  }
+
+  function moveIntoDialog() {
+    const { dot, ring } = getCursor();
+    if (!dot || !ring) return false;
+
+    // On first successful move, pin the restore point
+    if (!homeParent) {
+      homeParent = dot.parentNode || document.body;
+      homeParent.insertBefore(homeMarker, dot);
+    }
+
+    // Put cursor nodes inside the dialog so they're in the top layer too
+    dlg.appendChild(ring);
+    dlg.appendChild(dot);
+
+    // Safety: if your logic hides cursor on mouseleave, force it visible when dialog is open
+    dot.classList.remove('is-hidden');
+    ring.classList.remove('is-hidden');
+    return true;
+  }
+
+  function moveBack() {
+    const { dot, ring } = getCursor();
+    if (!dot || !ring || !homeParent) return;
+
+    homeParent.insertBefore(ring, homeMarker);
+    homeParent.insertBefore(dot, homeMarker);
+  }
+
+  // Watch dialog open/close
+  const mo = new MutationObserver(() => {
+    if (dlg.open) {
+      // Cursor nodes might be injected a bit later by your JS; retry a few times.
+      let tries = 0;
+      const t = setInterval(() => {
+        tries += 1;
+        if (moveIntoDialog() || tries >= 25) clearInterval(t);
+      }, 40);
+    } else {
+      moveBack();
+    }
+  });
+
+  mo.observe(dlg, { attributes: true, attributeFilter: ['open'] });
+
+  // If the dialog is already open (rare), handle it
+  if (dlg.open) moveIntoDialog();
+})();

@@ -1270,7 +1270,7 @@ footer {
 
 .achievement-card{
   background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
   padding: 18px;
   box-shadow: 0 10px 28px rgba(0,0,0,0.55);
