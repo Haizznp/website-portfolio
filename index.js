@@ -1694,3 +1694,170 @@ function setupZoomScroll() {
   window.addEventListener('resize', requestUpdate, { passive: true });
 })();
 
+// ===============================
+// ENHANCED PDF HANDLER: Fixes PDF viewing in lightbox
+// (append-only; replaces/enhances existing PDF handler)
+// ===============================
+(function setupEnhancedPdfHandler() {
+  const dlg = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const frame = document.getElementById('lightbox-frame');
+  const cap = document.getElementById('lightbox-cap');
+  const closeBtn = dlg.querySelector('.lightbox-close');
+  
+  if (!dlg || !frame || !img) return;
+
+  function isPdf(src) {
+    return /\.pdf(\?|#|$)/i.test(src || '');
+  }
+
+  function openPdf(src, caption) {
+    if (!src) return;
+    
+    // If dialog not supported, fallback to new tab
+    if (typeof dlg.showModal !== 'function') {
+      window.open(src, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // Mark dialog as showing PDF
+    dlg.classList.add('show-pdf');
+    
+    // Hide image, show iframe
+    img.style.display = 'none';
+    img.removeAttribute('src');
+    img.alt = '';
+    
+    frame.style.display = 'block';
+    frame.src = src;
+    frame.title = caption || 'PDF preview';
+    
+    if (cap) cap.textContent = caption || '';
+    
+    if (!dlg.open) dlg.showModal();
+  }
+
+  function openImage(src, caption) {
+    if (!src) return;
+    
+    if (typeof dlg.showModal !== 'function') {
+      window.open(src, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // Mark dialog as showing image
+    dlg.classList.remove('show-pdf');
+    
+    // Show image, hide iframe
+    frame.style.display = 'none';
+    frame.removeAttribute('src');
+    frame.title = '';
+    
+    img.style.display = 'block';
+    img.src = src;
+    img.alt = caption || 'Preview';
+    
+    if (cap) cap.textContent = caption || '';
+    
+    if (!dlg.open) dlg.showModal();
+  }
+
+  function closeDialog() {
+    if (dlg.open) dlg.close();
+    
+    // Clean up both img and iframe
+    img.removeAttribute('src');
+    img.alt = '';
+    img.style.display = 'none';
+    
+    frame.removeAttribute('src');
+    frame.title = '';
+    frame.style.display = 'none';
+    
+    if (cap) cap.textContent = '';
+    
+    dlg.classList.remove('show-pdf');
+  }
+
+  // Capture phase to override any existing lightbox handlers
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-lightbox]');
+    if (!btn) return;
+    
+    const src = btn.getAttribute('data-lightbox') || '';
+    const caption = btn.getAttribute('data-caption') || '';
+    
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    
+    if (isPdf(src)) {
+      openPdf(src, caption);
+    } else {
+      openImage(src, caption);
+    }
+  }, true); // Use capture phase
+
+  // Close handlers
+  if (closeBtn) {
+    closeBtn.removeEventListener('click', closeDialog); // Remove any old handlers
+    closeBtn.addEventListener('click', closeDialog);
+  }
+
+  dlg.addEventListener('click', (e) => {
+    if (e.target === dlg) closeDialog();
+  });
+
+  dlg.addEventListener('close', closeDialog);
+  
+  dlg.addEventListener('cancel', (e) => {
+    e.preventDefault();
+    closeDialog();
+  });
+
+  // Mark all PDF image sources to show placeholders
+  document.querySelectorAll('img[src$=".pdf"]').forEach(img => {
+    img.style.display = 'none';
+    const placeholder = img.parentElement?.querySelector('.proof-ph, .proof-tile, .evidence-ph, .img-ph');
+    if (placeholder) {
+      placeholder.style.display = 'flex';
+    }
+  });
+})();
+
+// ===============================
+// PDF THUMBNAIL GENERATOR: Show placeholder for PDF files
+// ===============================
+(function markPdfPlaceholders() {
+  const pdfImages = document.querySelectorAll('img[src$=".pdf"]');
+  
+  pdfImages.forEach(img => {
+    // Hide the img tag
+    img.style.display = 'none';
+    
+    // Show the placeholder
+    const btn = img.closest('.proof-btn, .evidence-btn, .gallery-btn');
+    if (!btn) return;
+    
+    const placeholder = btn.querySelector('.proof-ph, .proof-tile, .evidence-ph, .img-ph');
+    if (placeholder) {
+      placeholder.style.display = 'flex';
+      
+      // Update placeholder text to indicate it's a PDF
+      const title = placeholder.querySelector('.proof-ph-title, .evidence-ph-title, .img-ph-title');
+      if (title && !title.textContent.includes('PDF')) {
+        title.textContent = 'PDF: ' + title.textContent;
+      }
+    }
+  });
+  
+  // Re-run after images attempt to load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('img[src$=".pdf"]').forEach(img => {
+      img.style.display = 'none';
+      const btn = img.closest('.proof-btn, .evidence-btn, .gallery-btn');
+      if (!btn) return;
+      const placeholder = btn.querySelector('.proof-ph, .proof-tile, .evidence-ph, .img-ph');
+      if (placeholder) placeholder.style.display = 'flex';
+    });
+  });
+})();

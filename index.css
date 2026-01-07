@@ -2093,3 +2093,45 @@ footer {
   width: auto;
   display: block;
 }
+
+.lightbox-frame{
+  display:none;
+  width:min(92vw, 980px);
+  height:min(74vh, 760px);
+  border:0;
+  border-radius:12px;
+}
+
+/* =========================================================
+   PDF LIGHTBOX FIX: Show iframe for PDFs, hide img
+========================================================= */
+
+.lightbox.show-pdf .lightbox-img {
+  display: none;
+}
+
+.lightbox.show-pdf .lightbox-frame {
+  display: block;
+}
+
+.lightbox:not(.show-pdf) .lightbox-frame {
+  display: none;
+}
+
+.lightbox:not(.show-pdf) .lightbox-img {
+  display: block;
+}
+
+/* Ensure proof buttons show placeholder when PDF is set as img src */
+.proof-btn img[src$=".pdf"],
+.evidence-btn img[src$=".pdf"],
+.gallery-btn img[src$=".pdf"] {
+  display: none;
+}
+
+.proof-btn img[src$=".pdf"] ~ .proof-ph,
+.proof-btn img[src$=".pdf"] ~ .proof-tile,
+.evidence-btn img[src$=".pdf"] ~ .evidence-ph,
+.gallery-btn img[src$=".pdf"] ~ .img-ph {
+  display: flex !important;
+}
