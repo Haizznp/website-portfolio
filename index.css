@@ -146,6 +146,7 @@ html {
     position: relative;
     cursor: help;
     transition: transform 220ms ease;
+    z-index: 10;
 }
 
 .stat-number {
@@ -676,6 +677,7 @@ footer {
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
+    z-index: 1;
 }
 
 .lead {
